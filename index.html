@@ -583,6 +583,7 @@
               <th>Enrollment</th>
               <th>Company</th>
               <th>Duration</th>
+              <th>Proof</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -618,6 +619,22 @@
   <div class="modal">
     <div class="modal-title">Verify Internship</div>
     <div class="modal-sub" id="modalStudentName">Student Name</div>
+
+    <!-- Proof document link -->
+    <div id="modalProofBox" style="display:none;margin-bottom:16px">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--navy);margin-bottom:6px">Submitted Proof</div>
+      <a id="modalProofLink" href="#" target="_blank"
+        style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-light);color:var(--accent);
+               padding:9px 16px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid #bdd4f9">
+        📄 View Uploaded Document
+      </a>
+    </div>
+    <div id="modalNoProof" style="display:none;margin-bottom:16px">
+      <div style="background:var(--yellow-bg);color:var(--yellow);border:1px solid #fcd34d;border-radius:8px;padding:10px 14px;font-size:13px">
+        ⚠️ No proof document uploaded by student
+      </div>
+    </div>
+
     <div class="grid-2">
       <div class="form-group">
         <label>Start Date</label>
@@ -692,21 +709,21 @@ let students = [
       { week: 1, text: "Orientation and onboarding sessions.", date: "2026-05-13" },
       { week: 2, text: "Started work on React module.", date: "2026-05-20" }
     ],
-    finalSubmitted: false
+    finalSubmitted: false, proofUrl: ""
   },
   {
     enrollment: "21ICT0055", name: "Rohan Mehta",
     company: "TCS Innovation Labs", role: "ML Intern",
     start: "", end: "",
     status: "pending", submittedOn: "2026-04-15",
-    weeks: 0, weekReports: [], finalSubmitted: false
+    weeks: 0, weekReports: [], finalSubmitted: false, proofUrl: ""
   },
   {
     enrollment: "21ICT0031", name: "Anjali Patel",
     company: "Wipro Digital", role: "Cloud Intern",
     start: "2026-05-01", end: "2026-07-31",
     status: "accepted", submittedOn: "2026-04-08",
-    weeks: 13, weekReports: [], finalSubmitted: false
+    weeks: 13, weekReports: [], finalSubmitted: false, proofUrl: ""
   }
 ];
 
@@ -826,6 +843,7 @@ function submitInternship() {
   rec.start = start; rec.end = end;
   rec.status = 'pending';
   rec.submittedOn = new Date().toISOString().split('T')[0];
+  rec.proofUrl = ''; // will be set by Apps Script in production
 
   renderStudentDash(rec);
 
@@ -942,6 +960,10 @@ function renderAdminTable(filter) {
       <td style="color:var(--muted)">${s.enrollment}</td>
       <td>${s.company || '—'}<br><span style="font-size:11px;color:var(--muted)">${s.role || ''}</span></td>
       <td style="font-size:12px">${s.start ? s.start + ' →<br>' + s.end : '—'}</td>
+      <td>${s.proofUrl
+        ? `<a href="${s.proofUrl}" target="_blank" class="btn-sm btn-blue" style="text-decoration:none">📄 View</a>`
+        : `<span style="color:var(--muted);font-size:12px">—</span>`
+      }</td>
       <td><span class="badge badge-${s.status === 'none' ? 'pending' : s.status}">
         <span class="badge-dot"></span>
         ${s.status === 'none' ? 'No submission' : s.status.charAt(0).toUpperCase()+s.status.slice(1)}
@@ -987,6 +1009,17 @@ function openVerifyModal(enrollment) {
   document.getElementById('verifyEnd').value = rec.end || '';
   document.getElementById('verifyWeeks').value = rec.weeks || 8;
   document.getElementById('verifyRemarks').value = '';
+
+  // Show proof link or warning
+  if (rec.proofUrl) {
+    document.getElementById('modalProofBox').style.display = 'block';
+    document.getElementById('modalNoProof').style.display = 'none';
+    document.getElementById('modalProofLink').href = rec.proofUrl;
+  } else {
+    document.getElementById('modalProofBox').style.display = 'none';
+    document.getElementById('modalNoProof').style.display = 'block';
+  }
+
   document.getElementById('verifyModal').classList.add('open');
 }
 function closeModal() { document.getElementById('verifyModal').classList.remove('open'); }
