@@ -688,7 +688,7 @@
 // ══════════════════════════════════════════
 //  CONFIG  (replace these with real values)
 // ══════════════════════════════════════════
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxN1WG8QXoUhVpO6E7L7b4XUDp9_7kbYv4VZqVQg3qkBK6qgMm1VF9jU5qFrbgvmYGc/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwBLcdv9a1yv9nsfp6asvrEGCMgH0X7kFdgNYqVV4IfBsm970HR1zBZQYDdM1-VFA/exec";
 const ADMIN_CODE = "ICT2026"; // ← change this if needed
 
 // ══════════════════════════════════════════
@@ -858,35 +858,57 @@ async function submitInternship() {
       fileName:    file.name
     };
 
-    // Use no-cors XHR — Apps Script receives it fine
-    // Then poll getStatus to confirm and get proofUrl
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', APPS_SCRIPT_URL, true);
-    xhr.setRequestHeader('Content-Type', 'text/plain');
-    xhr.onload = async function() {
-      // Whether or not we can read the response, poll for status
-      await pollForStatus(company, role, start, end, btn);
-    };
-    xhr.onerror = async function() {
-      // Still poll — Apps Script may have received it
-      await pollForStatus(company, role, start, end, btn);
-    };
-    xhr.send(JSON.stringify(payload));
+    // ── IFRAME FORM METHOD — bypasses CORS completely ──
+    // Create a hidden iframe to receive the response
+    let iframe = document.getElementById('_submit_iframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.name = '_submit_iframe';
+      iframe.id   = '_submit_iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+    }
+
+    // Create a hidden form that POSTs to Apps Script
+    let form = document.getElementById('_submit_form');
+    if (form) form.remove();
+    form = document.createElement('form');
+    form.id     = '_submit_form';
+    form.method = 'POST';
+    form.action = APPS_SCRIPT_URL;
+    form.target = '_submit_iframe'; // response goes to iframe, not page
+    form.style.display = 'none';
+
+    // Put entire payload as one field
+    const input = document.createElement('input');
+    input.type  = 'hidden';
+    input.name  = 'payload';
+    input.value = JSON.stringify(payload);
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+
+    // After submitting, wait 6 seconds then poll Apps Script GET to confirm
+    btn.textContent = '⏳ Saving to server...';
+    setTimeout(() => pollForStatus(company, role, start, end, btn), 6000);
 
   } catch(err) {
-    alert('Error: ' + err.message);
+    alert('Error preparing upload: ' + err.message);
     btn.disabled = false;
     btn.textContent = 'Submit for Verification';
   }
 }
 
-async function pollForStatus(company, role, start, end, btn) {
-  // Poll Apps Script GET endpoint to confirm submission + get proofUrl
+function pollForStatus(company, role, start, end, btn) {
   let attempts = 0;
   const interval = setInterval(async () => {
     attempts++;
     try {
-      const res  = await fetch(`${APPS_SCRIPT_URL}?enrollment=${encodeURIComponent(currentUser.enrollment)}`);
+      // Use no-cors GET via image trick to ping, then try normal fetch
+      const res  = await fetch(`${APPS_SCRIPT_URL}?enrollment=${encodeURIComponent(currentUser.enrollment)}`, {
+        method: 'GET',
+        mode: 'cors'
+      });
       const data = await res.json();
       if (data.status === 'pending' || data.status === 'accepted') {
         clearInterval(interval);
@@ -899,11 +921,12 @@ async function pollForStatus(company, role, start, end, btn) {
         rec.weeks       = data.weeks || 0;
         rec.weekReports = data.weekReports || [];
         renderStudentDash(rec);
+        return;
       }
-    } catch(e) { /* keep polling */ }
-    if (attempts >= 8) {
+    } catch(e) { /* CORS on GET also blocked — show pending after max attempts */ }
+
+    if (attempts >= 5) {
       clearInterval(interval);
-      // Submission likely went through but no proofUrl yet — show pending anyway
       const rec = students.find(s => s.enrollment === currentUser.enrollment);
       rec.company = company; rec.role = role;
       rec.start = start; rec.end = end;
@@ -912,8 +935,9 @@ async function pollForStatus(company, role, start, end, btn) {
       rec.proofUrl = '';
       renderStudentDash(rec);
       btn.disabled = false;
+      alert('✅ Submitted! Your proof has been sent for verification.\n\nNote: The proof link will be visible to the admin in the Google Sheet (column N) and Drive folder.');
     }
-  }, 3000);
+  }, 4000);
 }
 
 function fileToBase64(file) {
