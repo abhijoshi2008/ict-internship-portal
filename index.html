@@ -4,1149 +4,782 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Summer Internship Portal 2026 – ICT Department</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --navy: #0f1f3d;
-    --blue: #1a3a6b;
-    --accent: #2e6be6;
-    --accent-light: #e8f0fd;
-    --gold: #c8a84b;
-    --text: #1a1a2e;
-    --muted: #6b7280;
-    --border: #e2e8f0;
-    --bg: #f8f9fc;
-    --white: #ffffff;
-    --green: #16a34a;
-    --green-bg: #dcfce7;
-    --red: #dc2626;
-    --red-bg: #fee2e2;
-    --yellow: #d97706;
-    --yellow-bg: #fef3c7;
-    --radius: 12px;
-    --shadow: 0 2px 16px rgba(15,31,61,0.08);
-    --shadow-lg: 0 8px 40px rgba(15,31,61,0.13);
-  }
+:root {
+  --navy:      #0a1628;
+  --blue:      #1e3a5f;
+  --accent:    #2563eb;
+  --accent2:   #3b82f6;
+  --gold:      #f59e0b;
+  --gold-light:#fef3c7;
+  --text:      #1e293b;
+  --muted:     #64748b;
+  --border:    #e2e8f0;
+  --bg:        #f1f5f9;
+  --white:     #ffffff;
+  --green:     #16a34a;
+  --green-bg:  #dcfce7;
+  --radius:    14px;
+  --shadow:    0 4px 24px rgba(10,22,40,0.10);
+  --shadow-lg: 0 12px 48px rgba(10,22,40,0.16);
+}
 
-  * { margin:0; padding:0; box-sizing:border-box; }
+* { margin:0; padding:0; box-sizing:border-box; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-  }
+html { scroll-behavior: smooth; }
 
-  /* ── HEADER ── */
-  .header {
-    background: var(--navy);
-    padding: 0 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-    position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-  }
-  .header-brand {
-    display: flex; align-items: center; gap: 14px;
-  }
-  .header-logo {
-    width: 36px; height: 36px;
-    background: var(--gold);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Serif Display', serif;
-    color: var(--navy);
-    font-size: 17px; font-weight: bold;
-  }
-  .header-title {
-    font-family: 'DM Serif Display', serif;
-    color: var(--white);
-    font-size: 16px;
-    line-height: 1.2;
-  }
-  .header-sub {
-    color: var(--gold);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .header-right {
-    display: flex; align-items: center; gap: 12px;
-  }
-  .btn-tab {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.75);
-    padding: 6px 16px;
-    border-radius: 6px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-tab:hover, .btn-tab.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--white);
-  }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-  /* ── MAIN LAYOUT ── */
-  .main { max-width: 860px; margin: 0 auto; padding: 36px 24px 60px; }
+/* ── HEADER ── */
+.header {
+  background: var(--navy);
+  position: sticky; top: 0; z-index: 200;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+}
+.header-inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 66px;
+}
+.brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.brand-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--gold) 0%, #d97706 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; color: var(--navy);
+  flex-shrink: 0;
+}
+.brand-text { line-height: 1.2; }
+.brand-title {
+  font-family: 'Playfair Display', serif;
+  color: white; font-size: 15px; font-weight: 600;
+}
+.brand-sub {
+  color: var(--gold); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
 
-  /* ── LOGIN CARD ── */
-  .login-wrap {
-    display: flex; justify-content: center; padding: 60px 24px;
-  }
-  .login-card {
-    background: var(--white);
-    border-radius: 16px;
-    box-shadow: var(--shadow-lg);
-    padding: 48px 40px;
-    width: 100%; max-width: 420px;
-    text-align: center;
-  }
-  .login-badge {
-    width: 64px; height: 64px;
-    background: var(--accent-light);
-    border-radius: 16px;
-    margin: 0 auto 20px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px;
-  }
-  .login-card h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 22px; color: var(--navy); margin-bottom: 6px;
-  }
-  .login-card p { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+/* NAV */
+.nav { display: flex; gap: 4px; align-items: center; }
+.nav-link {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 13px; font-weight: 500;
+  padding: 7px 14px; border-radius: 8px;
+  transition: all 0.2s;
+  cursor: pointer; border: none; background: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.nav-link:hover, .nav-link.active {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+.nav-link.active { color: var(--gold); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 6px; border: none; background: none;
+}
+.hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: white; border-radius: 2px; transition: all 0.3s;
+}
 
-  .form-group { text-align: left; margin-bottom: 16px; }
-  .form-group label {
-    display: block; font-size: 12px; font-weight: 600;
-    color: var(--navy); margin-bottom: 6px; letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-  .form-group input, .form-group select, .form-group textarea {
-    width: 100%;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    background: var(--white);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    border-color: var(--accent);
-  }
-  .form-group textarea { resize: vertical; min-height: 80px; }
+/* ── PAGES ── */
+.page { display: none; animation: fadeIn 0.3s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 
-  .btn-primary {
-    background: var(--accent);
-    color: var(--white);
-    border: none;
-    border-radius: 8px;
-    padding: 11px 28px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px; font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-    width: 100%;
-  }
-  .btn-primary:hover { background: #1d55c4; }
-  .btn-primary:active { transform: scale(0.98); }
-  .btn-primary:disabled { background: #9ab4e8; cursor: not-allowed; }
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1d4ed8 100%);
+  padding: 72px 24px 80px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(245,158,11,0.15);
+  border: 1px solid rgba(245,158,11,0.3);
+  color: var(--gold);
+  padding: 6px 16px; border-radius: 20px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 48px);
+  color: white; line-height: 1.15;
+  margin-bottom: 16px;
+}
+.hero h1 span { color: var(--gold); }
+.hero p {
+  color: rgba(255,255,255,0.7);
+  font-size: 16px; max-width: 520px;
+  margin: 0 auto 36px; line-height: 1.7;
+}
+.hero-steps {
+  display: flex; gap: 12px; justify-content: center;
+  flex-wrap: wrap; position: relative; z-index: 1;
+}
+.hero-step {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px; padding: 16px 20px;
+  text-align: center; min-width: 130px;
+  cursor: pointer; transition: all 0.25s;
+  text-decoration: none;
+}
+.hero-step:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-3px);
+}
+.hero-step-num {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--gold); color: var(--navy);
+  font-weight: 700; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 8px;
+}
+.hero-step-label { color: white; font-size: 12px; font-weight: 500; }
 
-  .btn-secondary {
-    background: var(--white);
-    color: var(--accent);
-    border: 1.5px solid var(--accent);
-    border-radius: 8px;
-    padding: 9px 20px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-secondary:hover { background: var(--accent-light); }
+/* ── WRAPPER ── */
+.wrap { max-width: 900px; margin: 0 auto; padding: 48px 24px 80px; }
+.wrap-lg { max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; }
 
-  .btn-sm {
-    padding: 6px 14px; font-size: 12px;
-    border-radius: 6px; font-weight: 600;
-    cursor: pointer; border: none;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
-  }
-  .btn-green { background: var(--green-bg); color: var(--green); }
-  .btn-green:hover { background: var(--green); color: white; }
-  .btn-red { background: var(--red-bg); color: var(--red); }
-  .btn-red:hover { background: var(--red); color: white; }
-  .btn-blue { background: var(--accent-light); color: var(--accent); }
-  .btn-blue:hover { background: var(--accent); color: white; }
+/* ── SECTION HEADER ── */
+.sec-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+}
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; color: var(--navy); margin-bottom: 8px;
+}
+.sec-sub { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom: 32px; }
 
-  /* ── STATUS BADGE ── */
-  .badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    padding: 3px 10px; border-radius: 20px;
-    font-size: 12px; font-weight: 600;
-  }
-  .badge-pending { background: var(--yellow-bg); color: var(--yellow); }
-  .badge-accepted { background: var(--green-bg); color: var(--green); }
-  .badge-rejected { background: var(--red-bg); color: var(--red); }
-  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+/* ── CARD ── */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  padding: 28px;
+  margin-bottom: 20px;
+}
 
-  /* ── SECTION HEADING ── */
-  .section-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
-  }
+/* ── ALERT ── */
+.alert {
+  border-radius: 10px; padding: 14px 18px;
+  font-size: 13px; margin-bottom: 20px;
+  display: flex; align-items: flex-start; gap: 10px;
+  line-height: 1.6;
+}
+.alert-blue  { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.alert-gold  { background: var(--gold-light); color: #92400e; border: 1px solid #fcd34d; }
+.alert-green { background: var(--green-bg); color: var(--green); border: 1px solid #86efac; }
 
-  /* ── CARD ── */
-  .card {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 28px;
-    margin-bottom: 20px;
-    border: 1px solid var(--border);
-  }
-  .card-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 18px; color: var(--navy); margin-bottom: 4px;
-  }
-  .card-sub { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+/* ── FORM EMBED ── */
+.form-embed-wrap {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.form-embed-wrap iframe {
+  width: 100%; border: none;
+  min-height: 700px; display: block;
+}
+.form-placeholder {
+  padding: 60px 32px; text-align: center;
+}
+.form-placeholder-icon { font-size: 48px; margin-bottom: 16px; }
+.form-placeholder h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; color: var(--navy); margin-bottom: 8px;
+}
+.form-placeholder p { color: var(--muted); font-size: 14px; margin-bottom: 24px; line-height: 1.6; }
+.form-placeholder a {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: white;
+  padding: 11px 24px; border-radius: 8px;
+  font-size: 13px; font-weight: 600; text-decoration: none;
+  transition: background 0.2s;
+}
+.form-placeholder a:hover { background: #1d4ed8; }
 
-  /* ── STATUS CARD ── */
-  .status-hero {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
-    border-radius: var(--radius);
-    padding: 28px;
-    color: white;
-    margin-bottom: 20px;
-    position: relative; overflow: hidden;
-  }
-  .status-hero::before {
-    content: '';
-    position: absolute; top: -30px; right: -30px;
-    width: 120px; height: 120px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.05);
-  }
-  .status-hero-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 22px; margin-bottom: 4px;
-  }
-  .status-hero-id { color: rgba(255,255,255,0.6); font-size: 13px; margin-bottom: 20px; }
-  .status-hero-grid {
-    display: grid; grid-template-columns: 1fr 1fr 1fr;
-    gap: 16px;
-  }
-  .status-stat { }
-  .status-stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
-  .status-stat-val { font-size: 15px; font-weight: 600; }
+/* ── WEEK GRID ── */
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px; margin-top: 24px;
+}
+.week-btn {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 20px;
+  text-align: center; cursor: pointer;
+  transition: all 0.2s; text-decoration: none;
+  display: block;
+}
+.week-btn:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(37,99,235,0.12);
+  transform: translateY(-2px);
+}
+.week-btn-num {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700; color: var(--navy);
+  margin: 0 auto 10px;
+  transition: all 0.2s;
+}
+.week-btn:hover .week-btn-num {
+  background: var(--accent); color: white;
+}
+.week-btn-label { font-size: 13px; font-weight: 600; color: var(--navy); }
+.week-btn-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
 
-  /* ── WEEKS GRID ── */
-  .weeks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 12px;
-  }
-  .week-card {
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .week-card.submitted { border-color: var(--green); background: #f0fdf4; }
-  .week-card-label { font-size: 12px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
-  .week-card-status { font-size: 11px; color: var(--muted); margin-bottom: 10px; }
-  .week-card.submitted .week-card-status { color: var(--green); }
+/* ── STATUS TABLE ── */
+.table-wrap { overflow-x: auto; border-radius: var(--radius); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th {
+  background: var(--navy); color: white;
+  padding: 12px 16px; text-align: left;
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+th:first-child { border-radius: 0; }
+td { padding: 13px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #f8faff; }
 
-  /* ── UPLOAD AREA ── */
-  .upload-area {
-    border: 2px dashed var(--border);
-    border-radius: 10px;
-    padding: 28px;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .upload-area:hover { border-color: var(--accent); background: var(--accent-light); }
-  .upload-area input[type=file] { display: none; }
-  .upload-icon { font-size: 32px; margin-bottom: 8px; }
-  .upload-text { font-size: 14px; color: var(--muted); }
-  .upload-text strong { color: var(--accent); }
+.badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700;
+}
+.badge-pending  { background: var(--gold-light); color: #92400e; }
+.badge-accepted { background: var(--green-bg); color: var(--green); }
+.badge-rejected { background: #fee2e2; color: #dc2626; }
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
-  /* ── TABLE ── */
-  .table-wrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th {
-    text-align: left; padding: 10px 14px;
-    background: var(--bg); color: var(--navy);
-    font-weight: 600; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 0.06em;
-    border-bottom: 2px solid var(--border);
-  }
-  td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: #fafbff; }
+/* ── IMPORTANT DATES ── */
+.dates-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px; margin-top: 24px;
+}
+.date-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px;
+  border-left: 4px solid var(--accent);
+}
+.date-card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 6px; }
+.date-card-date { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 4px; }
+.date-card-desc { font-size: 12px; color: var(--muted); }
 
-  /* ── DIVIDER ── */
-  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+/* ── CONTACT ── */
+.contact-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+  border-radius: var(--radius); padding: 32px;
+  color: white; margin-top: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+}
+.contact-box h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 6px; }
+.contact-box p { color: rgba(255,255,255,0.7); font-size: 14px; }
+.contact-box a {
+  background: var(--gold); color: var(--navy);
+  padding: 10px 22px; border-radius: 8px;
+  font-size: 13px; font-weight: 700; text-decoration: none;
+  white-space: nowrap; transition: opacity 0.2s; flex-shrink: 0;
+}
+.contact-box a:hover { opacity: 0.9; }
 
-  /* ── ALERT ── */
-  .alert {
-    border-radius: 8px; padding: 12px 16px; font-size: 13px;
-    margin-bottom: 16px; display: flex; align-items: flex-start; gap: 10px;
-  }
-  .alert-info { background: var(--accent-light); color: var(--accent); border: 1px solid #bdd4f9; }
-  .alert-success { background: var(--green-bg); color: var(--green); border: 1px solid #86efac; }
-  .alert-warning { background: var(--yellow-bg); color: var(--yellow); border: 1px solid #fcd34d; }
+/* ── WEEK MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10,22,40,0.6);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 300; padding: 20px;
+  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--white); border-radius: 16px;
+  width: 100%; max-width: 700px;
+  max-height: 90vh; overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(20px); transition: transform 0.25s;
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 24px; border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; background: var(--white); z-index: 1;
+}
+.modal-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); }
+.modal-close {
+  width: 32px; height: 32px; border-radius: 8px;
+  border: none; background: var(--bg); cursor: pointer;
+  font-size: 16px; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.modal-close:hover { background: var(--border); }
+.modal-body { padding: 0; }
+.modal-body iframe { width: 100%; border: none; min-height: 600px; display: block; }
 
-  /* ── MODAL ── */
-  .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(15,31,61,0.5);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 200; padding: 24px;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.2s;
-  }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-  .modal {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 32px;
-    width: 100%; max-width: 480px;
-    box-shadow: var(--shadow-lg);
-    transform: translateY(16px);
-    transition: transform 0.2s;
-  }
-  .modal-overlay.open .modal { transform: translateY(0); }
-  .modal-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 20px; color: var(--navy); margin-bottom: 6px;
-  }
-  .modal-sub { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
-  .modal-actions { display: flex; gap: 10px; margin-top: 20px; justify-content: flex-end; }
+/* ── FOOTER ── */
+.footer {
+  background: var(--navy); color: rgba(255,255,255,0.5);
+  text-align: center; padding: 20px 24px;
+  font-size: 12px;
+}
+.footer span { color: var(--gold); }
 
-  /* ── GRID ── */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-  /* ── USER CHIP ── */
-  .user-chip {
-    display: flex; align-items: center; gap: 8px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 20px; padding: 4px 12px 4px 6px;
-    cursor: pointer;
-  }
-  .user-avatar {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 700; color: var(--navy);
-  }
-  .user-name { color: white; font-size: 13px; }
-  .btn-logout {
-    background: transparent; border: 1px solid rgba(255,255,255,0.3);
-    color: rgba(255,255,255,0.8); padding: 5px 12px;
-    border-radius: 6px; font-size: 12px; cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
-  }
-  .btn-logout:hover { background: rgba(255,255,255,0.1); }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .fade-up { animation: fadeUp 0.3s ease both; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    .header { padding: 0 16px; }
-    .main { padding: 20px 12px 48px; }
-    .grid-2 { grid-template-columns: 1fr; }
-    .status-hero-grid { grid-template-columns: 1fr 1fr; }
-    .login-card { padding: 32px 20px; }
-  }
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav { display: none; flex-direction: column; position: absolute; top: 66px; left: 0; right: 0; background: var(--navy); padding: 12px; gap: 4px; }
+  .nav.open { display: flex; }
+  .hamburger { display: flex; }
+  .header { position: relative; }
+  .hero { padding: 48px 20px 56px; }
+  .contact-box { flex-direction: column; }
+}
 </style>
 </head>
 <body>
 
 <!-- ── HEADER ── -->
-<header class="header" id="appHeader">
-  <div class="header-brand">
-    <div class="header-logo">ICT</div>
-    <div>
-      <div class="header-title">Summer Internship Portal 2026</div>
-      <div class="header-sub">ICT Department</div>
-    </div>
-  </div>
-  <div class="header-right" id="headerRight">
-    <button class="btn-tab active" onclick="showLogin('student')">Student</button>
-    <button class="btn-tab" onclick="showLogin('admin')">Admin</button>
+<header class="header">
+  <div class="header-inner">
+    <a class="brand" onclick="showPage('home')" href="#">
+      <div class="brand-icon">ICT</div>
+      <div class="brand-text">
+        <div class="brand-title">Summer Internship Portal 2026</div>
+        <div class="brand-sub">ICT Department</div>
+      </div>
+    </a>
+    <nav class="nav" id="mainNav">
+      <button class="nav-link active" onclick="showPage('home')"       id="nav-home">Home</button>
+      <button class="nav-link"        onclick="showPage('proof')"      id="nav-proof">Submit Proof</button>
+      <button class="nav-link"        onclick="showPage('weekly')"     id="nav-weekly">Weekly Reports</button>
+      <button class="nav-link"        onclick="showPage('final')"      id="nav-final">Final Report</button>
+      <button class="nav-link"        onclick="showPage('status')"     id="nav-status">Check Status</button>
+    </nav>
+    <button class="hamburger" onclick="toggleMenu()" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<!-- ══════════════ STUDENT LOGIN ══════════════ -->
-<div id="studentLogin" class="login-wrap fade-up">
-  <div class="login-card">
-    <div class="login-badge">🎓</div>
-    <h2>Student Sign In</h2>
-    <p>Enter your enrollment number and name to access your internship dashboard</p>
-    <div class="form-group">
-      <label>Enrollment Number</label>
-      <input type="text" id="sEnroll" placeholder="e.g. 21ICT0042" />
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: HOME                               -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">📋 ICT Department · PDEU · 2026</div>
+    <h1>Summer Internship<br/><span>Portal 2026</span></h1>
+    <p>Your single point of contact for internship proof submission, weekly reports, and final submission.</p>
+    <div class="hero-steps">
+      <div class="hero-step" onclick="showPage('proof')">
+        <div class="hero-step-num">1</div>
+        <div class="hero-step-label">Submit Proof</div>
+      </div>
+      <div style="display:flex;align-items:center;color:rgba(255,255,255,0.3);font-size:20px">→</div>
+      <div class="hero-step" onclick="showPage('weekly')">
+        <div class="hero-step-num">2</div>
+        <div class="hero-step-label">Weekly Reports</div>
+      </div>
+      <div style="display:flex;align-items:center;color:rgba(255,255,255,0.3);font-size:20px">→</div>
+      <div class="hero-step" onclick="showPage('final')">
+        <div class="hero-step-num">3</div>
+        <div class="hero-step-label">Final Report</div>
+      </div>
+      <div style="display:flex;align-items:center;color:rgba(255,255,255,0.3);font-size:20px">→</div>
+      <div class="hero-step" onclick="showPage('status')">
+        <div class="hero-step-num">4</div>
+        <div class="hero-step-label">Check Status</div>
+      </div>
     </div>
-    <div class="form-group">
-      <label>Full Name</label>
-      <input type="text" id="sName" placeholder="Your full name" />
-    </div>
-    <button class="btn-primary" onclick="studentLogin()">Continue →</button>
   </div>
-</div>
 
-<!-- ══════════════ ADMIN LOGIN ══════════════ -->
-<div id="adminLogin" class="login-wrap fade-up" style="display:none">
-  <div class="login-card">
-    <div class="login-badge">🔐</div>
-    <h2>Admin Sign In</h2>
-    <p>Faculty / coordinator access for internship verification</p>
-    <div class="form-group">
-      <label>Admin Code</label>
-      <input type="password" id="adminCode" placeholder="Enter access code" />
+  <div class="wrap-lg">
+
+    <!-- Instructions -->
+    <div class="alert alert-blue">
+      <span>📌</span>
+      <div><strong>How it works:</strong> Submit your internship offer letter using the Submit Proof page. The coordinator will verify it within 3–5 working days. Once accepted, submit weekly reports every Monday and a final report after completion.</div>
     </div>
-    <button class="btn-primary" onclick="adminLogin()">Sign In →</button>
-  </div>
-</div>
 
-<!-- ══════════════ STUDENT DASHBOARD ══════════════ -->
-<div id="studentDash" style="display:none" class="fade-up">
-  <div class="main">
-
-    <!-- Status Hero -->
-    <div class="status-hero" id="heroBlock">
-      <div class="status-hero-name" id="heroName">—</div>
-      <div class="status-hero-id" id="heroId">—</div>
-      <div class="status-hero-grid">
-        <div class="status-stat">
-          <div class="status-stat-label">Status</div>
-          <div class="status-stat-val" id="heroStatus">—</div>
-        </div>
-        <div class="status-stat">
-          <div class="status-stat-label">Start Date</div>
-          <div class="status-stat-val" id="heroStart">—</div>
-        </div>
-        <div class="status-stat">
-          <div class="status-stat-label">End Date</div>
-          <div class="status-stat-val" id="heroEnd">—</div>
-        </div>
+    <!-- Important Dates -->
+    <div class="sec-label">Key Deadlines</div>
+    <div class="sec-title">Important Dates</div>
+    <div class="dates-grid">
+      <div class="date-card">
+        <div class="date-card-label">Proof Submission</div>
+        <div class="date-card-date">10 May 2026</div>
+        <div class="date-card-desc">Last date to submit offer letter</div>
+      </div>
+      <div class="date-card" style="border-left-color:var(--gold)">
+        <div class="date-card-label">Weekly Reports</div>
+        <div class="date-card-date">Every Monday</div>
+        <div class="date-card-desc">Submit by end of each week</div>
+      </div>
+      <div class="date-card" style="border-left-color:var(--green)">
+        <div class="date-card-label">Final Report</div>
+        <div class="date-card-date">31 July 2026</div>
+        <div class="date-card-desc">After internship completion</div>
+      </div>
+      <div class="date-card" style="border-left-color:#8b5cf6">
+        <div class="date-card-label">Internship Period</div>
+        <div class="date-card-date">May – July 2026</div>
+        <div class="date-card-desc">Minimum 6 weeks required</div>
       </div>
     </div>
 
-    <!-- No submission yet -->
-    <div id="noSubmission">
-      <div class="card">
-        <div class="card-title">Submit Internship Proof</div>
-        <div class="card-sub">Upload your internship offer letter or joining confirmation</div>
-
-        <div class="grid-2" style="margin-bottom:16px">
-          <div class="form-group" style="margin-bottom:0">
-            <label>Company Name</label>
-            <input type="text" id="companyName" placeholder="e.g. Infosys Ltd." />
-          </div>
-          <div class="form-group" style="margin-bottom:0">
-            <label>Role / Designation</label>
-            <input type="text" id="roleTitle" placeholder="e.g. Software Intern" />
-          </div>
-        </div>
-        <div class="grid-2" style="margin-bottom:16px">
-          <div class="form-group" style="margin-bottom:0">
-            <label>Expected Start Date</label>
-            <input type="date" id="expStart" />
-          </div>
-          <div class="form-group" style="margin-bottom:0">
-            <label>Expected End Date</label>
-            <input type="date" id="expEnd" />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Description (optional)</label>
-          <textarea id="intDesc" placeholder="Brief note about your internship..."></textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Upload Proof (PDF / Image)</label>
-          <label class="upload-area" for="proofFile">
-            <input type="file" id="proofFile" accept=".pdf,.jpg,.jpeg,.png" onchange="fileChosen(this)"/>
-            <div class="upload-icon">📎</div>
-            <div class="upload-text" id="uploadLabel"><strong>Click to upload</strong> or drag & drop<br/>PDF, JPG, PNG — max 5MB</div>
-          </label>
-        </div>
-
-        <button class="btn-primary" onclick="submitInternship()">Submit for Verification</button>
+    <!-- Guidelines -->
+    <div class="sec-title" style="margin-top:40px">Guidelines</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:20px">
+      <div class="card" style="padding:20px">
+        <div style="font-size:24px;margin-bottom:10px">📄</div>
+        <div style="font-weight:600;color:var(--navy);margin-bottom:6px">Proof Submission</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.6">Upload your offer letter or joining confirmation. Accepted formats: PDF, JPG, PNG. Max size: 10MB. Submit only once.</div>
+      </div>
+      <div class="card" style="padding:20px">
+        <div style="font-size:24px;margin-bottom:10px">📅</div>
+        <div style="font-weight:600;color:var(--navy);margin-bottom:6px">Weekly Reports</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.6">Submit a brief report every week covering your tasks, tools used, and progress. Week 1 to Week 8 forms are available separately.</div>
+      </div>
+      <div class="card" style="padding:20px">
+        <div style="font-size:24px;margin-bottom:10px">🏁</div>
+        <div style="font-weight:600;color:var(--navy);margin-bottom:6px">Final Report</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.6">Submit your final internship report and completion certificate (if received) after your internship ends. PDF only, max 20MB.</div>
+      </div>
+      <div class="card" style="padding:20px">
+        <div style="font-size:24px;margin-bottom:10px">🔍</div>
+        <div style="font-weight:600;color:var(--navy);margin-bottom:6px">Check Status</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.6">View your internship verification status. Status is updated within 3–5 working days of proof submission by the coordinator.</div>
       </div>
     </div>
 
-    <!-- Pending verification -->
-    <div id="pendingBlock" style="display:none">
-      <div class="alert alert-warning">
-        <span>⏳</span>
-        <div><strong>Under Review</strong> — Your submission has been received and is pending verification by the ICT department coordinator. You'll see your status updated here.</div>
-      </div>
-      <div class="card">
-        <div class="card-title" id="pendingCompany">—</div>
-        <div class="card-sub" id="pendingRole">—</div>
-        <p style="font-size:13px;color:var(--muted)">Submitted on <span id="pendingDate">—</span></p>
-      </div>
-    </div>
-
-    <!-- Accepted: reports block -->
-    <div id="acceptedBlock" style="display:none">
-      <div class="alert alert-success">
-        <span>✅</span>
-        <div><strong>Internship Accepted</strong> — Your internship has been verified. Please submit weekly reports and a final report on completion.</div>
-      </div>
-
-      <!-- Weekly Reports -->
-      <div class="card">
-        <div class="card-title">Weekly Reports</div>
-        <div class="card-sub">Submit a brief report at the end of each week</div>
-        <div class="weeks-grid" id="weeksGrid"></div>
-      </div>
-
-      <!-- Final Report -->
-      <div class="card">
-        <div class="card-title">Final Submission</div>
-        <div class="card-sub">Upload your final internship report after completion</div>
-        <div id="finalSubmitArea">
-          <div class="form-group">
-            <label>Final Report (PDF)</label>
-            <label class="upload-area" for="finalFile">
-              <input type="file" id="finalFile" accept=".pdf" onchange="finalFileChosen(this)"/>
-              <div class="upload-icon">📄</div>
-              <div class="upload-text" id="finalUploadLabel"><strong>Click to upload</strong> final report PDF</div>
-            </label>
-          </div>
-          <div class="form-group">
-            <label>Key Learnings (brief)</label>
-            <textarea id="finalLearnings" placeholder="Summarise what you learned..."></textarea>
-          </div>
-          <button class="btn-primary" onclick="submitFinal()">Submit Final Report</button>
-        </div>
-        <div id="finalDone" style="display:none" class="alert alert-success" style="margin:0">
-          <span>🎉</span> Final report submitted successfully!
-        </div>
-      </div>
-    </div>
-
-    <!-- Rejected -->
-    <div id="rejectedBlock" style="display:none">
-      <div class="alert" style="background:var(--red-bg);color:var(--red);border:1px solid #fca5a5;">
-        <span>❌</span>
-        <div><strong>Not Accepted</strong> — Your internship submission was not accepted. Please contact the department coordinator for details, or re-submit with updated proof.</div>
-      </div>
-      <button class="btn-secondary" onclick="resetToSubmit()">Re-submit</button>
-    </div>
-
-  </div>
-</div>
-
-<!-- ══════════════ ADMIN DASHBOARD ══════════════ -->
-<div id="adminDash" style="display:none" class="fade-up">
-  <div class="main">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
+    <!-- Contact -->
+    <div class="contact-box">
       <div>
-        <div class="section-label">Coordinator View</div>
-        <h2 style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy)">Internship Applications</h2>
+        <h3>Need Help?</h3>
+        <p>Contact the ICT Department coordinator for any queries regarding your internship submission.</p>
       </div>
-      <div style="display:flex;gap:8px">
-        <button class="btn-secondary" onclick="filterAdmin('all')" id="fAll">All</button>
-        <button class="btn-secondary" onclick="filterAdmin('pending')" id="fPend">Pending</button>
-        <button class="btn-secondary" onclick="filterAdmin('accepted')" id="fAcc">Accepted</button>
-      </div>
+      <a href="mailto:coordinator@university.edu">✉️ Contact Coordinator</a>
     </div>
 
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: SUBMIT PROOF                       -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="page-proof">
+  <div class="wrap">
+    <div class="sec-label">Step 1</div>
+    <div class="sec-title">Submit Internship Proof</div>
+    <div class="sec-sub">Upload your offer letter or joining confirmation. Submit this form only once. Your Roll Number must match university records exactly.</div>
+
+    <div class="alert alert-gold">
+      <span>⚠️</span>
+      <div><strong>Before submitting:</strong> Make sure your offer letter clearly shows the company name, your name, designation, and internship duration. Scanned copies and photos are accepted.</div>
+    </div>
+
+    <div class="form-embed-wrap">
+      <!-- REPLACE THE src BELOW WITH YOUR GOOGLE FORM 1 EMBED LINK -->
+      <!-- To get embed link: Open Form → ⋮ menu → Embed → Copy iframe src -->
+      <div class="form-placeholder" id="proof-placeholder">
+        <div class="form-placeholder-icon">📋</div>
+        <h3>Internship Proof Submission Form</h3>
+        <p>The form will appear here once configured.<br/>Click below to open the form directly in a new tab.</p>
+        <a href="PASTE_FORM_1_LINK_HERE" target="_blank">Open Submission Form ↗</a>
+      </div>
+      <!-- UNCOMMENT BELOW AND REPLACE src AFTER YOU HAVE YOUR FORM LINK
+      <iframe src="PASTE_FORM_1_EMBED_LINK_HERE" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      -->
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: WEEKLY REPORTS                     -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="page-weekly">
+  <div class="wrap">
+    <div class="sec-label">Step 2</div>
+    <div class="sec-title">Weekly Report Submission</div>
+    <div class="sec-sub">Submit your weekly report every Monday. Select the correct week below. Roll Number and Name are mandatory in every form.</div>
+
+    <div class="alert alert-gold">
+      <span>⚠️</span>
+      <div><strong>Important:</strong> Do not submit a week's report before that week is completed. Each form must be submitted separately. You can only submit each week once.</div>
+    </div>
+
+    <div class="week-grid" id="weekGrid">
+      <!-- Generated by JS below -->
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: FINAL REPORT                       -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="page-final">
+  <div class="wrap">
+    <div class="sec-label">Step 3</div>
+    <div class="sec-title">Final Report Submission</div>
+    <div class="sec-sub">Submit this form only after your internship is fully completed. Upload your final report and completion certificate if received.</div>
+
+    <div class="alert alert-green">
+      <span>✅</span>
+      <div><strong>Checklist before submitting:</strong> Internship completed · Final report prepared (PDF) · Completion certificate ready (if received) · Roll Number confirmed</div>
+    </div>
+
+    <div class="form-embed-wrap">
+      <div class="form-placeholder" id="final-placeholder">
+        <div class="form-placeholder-icon">🏁</div>
+        <h3>Final Report Submission Form</h3>
+        <p>The form will appear here once configured.<br/>Click below to open the form directly in a new tab.</p>
+        <a href="PASTE_FORM_3_LINK_HERE" target="_blank">Open Final Report Form ↗</a>
+      </div>
+      <!-- UNCOMMENT BELOW AND REPLACE src AFTER YOU HAVE YOUR FORM LINK
+      <iframe src="PASTE_FORM_3_EMBED_LINK_HERE" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      -->
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  PAGE: CHECK STATUS                       -->
+<!-- ══════════════════════════════════════════ -->
+<div class="page" id="page-status">
+  <div class="wrap">
+    <div class="sec-label">Live Status</div>
+    <div class="sec-title">Check Your Internship Status</div>
+    <div class="sec-sub">Status is updated by the coordinator within 3–5 working days of proof submission. Use Ctrl+F to search your Roll Number.</div>
+
+    <div class="alert alert-blue">
+      <span>ℹ️</span>
+      <div>Status is updated manually by the coordinator. If your status hasn't changed after 5 working days of submission, contact the department office.</div>
+    </div>
+
+    <!-- Embed Google Sheet published view here -->
     <div class="card" style="padding:0;overflow:hidden">
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Student</th>
-              <th>Enrollment</th>
-              <th>Company</th>
-              <th>Duration</th>
-              <th>Proof</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="adminTableBody"></tbody>
-        </table>
+      <div style="padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+        <div style="font-weight:600;color:var(--navy)">Internship Status Board</div>
+        <span style="font-size:12px;color:var(--muted)">Updated by coordinator</span>
+      </div>
+
+      <!-- OPTION A: Embed published Google Sheet (recommended) -->
+      <!-- Publish sheet: File → Share → Publish to web → select Students tab → Embed → copy src -->
+      <div id="sheet-placeholder" style="padding:48px;text-align:center">
+        <div style="font-size:40px;margin-bottom:16px">📊</div>
+        <div style="font-weight:600;color:var(--navy);margin-bottom:8px;font-size:16px">Status Sheet</div>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:20px">The status table will appear here once the Google Sheet is published and configured.</p>
+        <a href="PASTE_GOOGLE_SHEET_LINK_HERE" target="_blank"
+          style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:white;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none">
+          📊 View Status Sheet ↗
+        </a>
+      </div>
+      <!-- UNCOMMENT BELOW AFTER PUBLISHING YOUR SHEET
+      <iframe src="PASTE_PUBLISHED_SHEET_EMBED_URL_HERE"
+        style="width:100%;height:500px;border:none;display:block"></iframe>
+      -->
+
+      <!-- OPTION B: Manual status table (use this until Sheet is set up) -->
+      <div style="padding:0 24px 24px" id="manualStatusTable">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:12px;margin-top:16px">Sample — replace with your published Google Sheet embed above</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Verified Start</th>
+                <th>Verified End</th>
+                <th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody id="statusTbody">
+              <tr>
+                <td>21ICT0001</td>
+                <td>Sample Student</td>
+                <td>Sample Company</td>
+                <td><span class="badge badge-pending"><span class="badge-dot"></span>Pending</span></td>
+                <td>—</td><td>—</td><td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
-    <!-- Weekly reports section -->
-    <div class="card" style="margin-top:8px">
-      <div class="card-title">Weekly Report Submissions</div>
-      <div class="card-sub">Reports submitted by accepted interns</div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Student</th>
-              <th>Week</th>
-              <th>Submitted On</th>
-              <th>View</th>
-            </tr>
-          </thead>
-          <tbody id="reportsTableBody"></tbody>
-        </table>
-      </div>
-    </div>
   </div>
 </div>
 
-<!-- ══════════════ VERIFY MODAL ══════════════ -->
-<div class="modal-overlay" id="verifyModal">
-  <div class="modal">
-    <div class="modal-title">Verify Internship</div>
-    <div class="modal-sub" id="modalStudentName">Student Name</div>
-
-    <!-- Proof document link -->
-    <div id="modalProofBox" style="display:none;margin-bottom:16px">
-      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--navy);margin-bottom:6px">Submitted Proof</div>
-      <a id="modalProofLink" href="#" target="_blank"
-        style="display:inline-flex;align-items:center;gap:8px;background:var(--accent-light);color:var(--accent);
-               padding:9px 16px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid #bdd4f9">
-        📄 View Uploaded Document
-      </a>
-    </div>
-    <div id="modalNoProof" style="display:none;margin-bottom:16px">
-      <div style="background:var(--yellow-bg);color:var(--yellow);border:1px solid #fcd34d;border-radius:8px;padding:10px 14px;font-size:13px">
-        ⚠️ No proof document uploaded by student
-      </div>
-    </div>
-
-    <div class="grid-2">
-      <div class="form-group">
-        <label>Start Date</label>
-        <input type="date" id="verifyStart"/>
-      </div>
-      <div class="form-group">
-        <label>End Date</label>
-        <input type="date" id="verifyEnd"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Number of Weeks</label>
-      <input type="number" id="verifyWeeks" min="1" max="24" value="8"/>
-    </div>
-    <div class="form-group">
-      <label>Remarks (optional)</label>
-      <input type="text" id="verifyRemarks" placeholder="Any note for student..."/>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-secondary" onclick="closeModal()">Cancel</button>
-      <button class="btn-sm btn-red" style="padding:9px 18px;font-size:13px" onclick="rejectInternship()">Reject</button>
-      <button class="btn-primary" style="width:auto" onclick="acceptInternship()">Accept ✓</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════ WEEK MODAL ══════════════ -->
+<!-- ══════════════════════════════════════════ -->
+<!--  WEEK MODAL                               -->
+<!-- ══════════════════════════════════════════ -->
 <div class="modal-overlay" id="weekModal">
   <div class="modal">
-    <div class="modal-title" id="weekModalTitle">Week Report</div>
-    <div class="modal-sub">Briefly describe your activities this week</div>
-    <div class="form-group">
-      <label>Weekly Summary</label>
-      <textarea id="weekSummary" placeholder="What did you work on this week?" style="min-height:100px"></textarea>
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Week Report</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
-    <div class="form-group">
-      <label>Attachment (optional)</label>
-      <label class="upload-area" for="weekFile" style="padding:16px">
-        <input type="file" id="weekFile" accept=".pdf,.jpg,.png" onchange="weekFileChosen(this)"/>
-        <div class="upload-text" id="weekFileLabel"><strong>Attach file</strong> (PDF/image)</div>
-      </label>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-secondary" onclick="closeWeekModal()">Cancel</button>
-      <button class="btn-primary" style="width:auto" onclick="saveWeekReport()">Submit Report</button>
+    <div class="modal-body">
+      <!-- Form loads here -->
+      <div id="modalFormArea" style="padding:40px;text-align:center">
+        <div style="font-size:40px;margin-bottom:16px">📝</div>
+        <div style="font-weight:600;color:var(--navy);margin-bottom:8px">Week Report Form</div>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:20px">Click below to open this week's form in a new tab.</p>
+        <a id="modalFormLink" href="#" target="_blank"
+          style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:white;padding:11px 24px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none">
+          Open Week Form ↗
+        </a>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <span>Summer Internship Portal 2026</span> · ICT Department · PDEU · All submissions are recorded
+</footer>
+
 <script>
-// ══════════════════════════════════════════
-//  CONFIG  (replace these with real values)
-// ══════════════════════════════════════════
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwBLcdv9a1yv9nsfp6asvrEGCMgH0X7kFdgNYqVV4IfBsm970HR1zBZQYDdM1-VFA/exec";
-const ADMIN_CODE = "ICT2026"; // ← change this if needed
+// ══════════════════════════════════════════════════════
+//  CONFIGURATION — PASTE YOUR GOOGLE FORM LINKS HERE
+// ══════════════════════════════════════════════════════
 
-// ══════════════════════════════════════════
-//  LOCAL STATE (demo data)
-// ══════════════════════════════════════════
-let currentUser = null; // { name, enrollment }
-let currentView = 'student';
-let activeModalEnroll = null;
-
-// Demo dataset
-let students = [
-  {
-    enrollment: "21ICT0042", name: "Priya Shah",
-    company: "Infosys Ltd.", role: "Software Intern",
-    start: "2026-05-05", end: "2026-06-27",
-    status: "accepted", submittedOn: "2026-04-10",
-    weeks: 8, weekReports: [
-      { week: 1, text: "Orientation and onboarding sessions.", date: "2026-05-13" },
-      { week: 2, text: "Started work on React module.", date: "2026-05-20" }
-    ],
-    finalSubmitted: false, proofUrl: ""
+const FORMS = {
+  proof: {
+    link:  "PASTE_FORM_1_LINK_HERE",
+    embed: "PASTE_FORM_1_EMBED_LINK_HERE"
   },
-  {
-    enrollment: "21ICT0055", name: "Rohan Mehta",
-    company: "TCS Innovation Labs", role: "ML Intern",
-    start: "", end: "",
-    status: "pending", submittedOn: "2026-04-15",
-    weeks: 0, weekReports: [], finalSubmitted: false, proofUrl: ""
+  final: {
+    link:  "PASTE_FORM_3_LINK_HERE",
+    embed: "PASTE_FORM_3_EMBED_LINK_HERE"
   },
-  {
-    enrollment: "21ICT0031", name: "Anjali Patel",
-    company: "Wipro Digital", role: "Cloud Intern",
-    start: "2026-05-01", end: "2026-07-31",
-    status: "accepted", submittedOn: "2026-04-08",
-    weeks: 13, weekReports: [], finalSubmitted: false, proofUrl: ""
-  }
-];
+  weeks: [
+    { week: 1, link: "PASTE_WEEK_1_FORM_LINK", embed: "PASTE_WEEK_1_EMBED" },
+    { week: 2, link: "PASTE_WEEK_2_FORM_LINK", embed: "PASTE_WEEK_2_EMBED" },
+    { week: 3, link: "PASTE_WEEK_3_FORM_LINK", embed: "PASTE_WEEK_3_EMBED" },
+    { week: 4, link: "PASTE_WEEK_4_FORM_LINK", embed: "PASTE_WEEK_4_EMBED" },
+    { week: 5, link: "PASTE_WEEK_5_FORM_LINK", embed: "PASTE_WEEK_5_EMBED" },
+    { week: 6, link: "PASTE_WEEK_6_FORM_LINK", embed: "PASTE_WEEK_6_EMBED" },
+    { week: 7, link: "PASTE_WEEK_7_FORM_LINK", embed: "PASTE_WEEK_7_EMBED" },
+    { week: 8, link: "PASTE_WEEK_8_FORM_LINK", embed: "PASTE_WEEK_8_EMBED" },
+  ],
+  statusSheet: "PASTE_GOOGLE_SHEET_PUBLISHED_URL"
+};
 
-// ══════════════════════════════════════════
-//  VIEW SWITCHING
-// ══════════════════════════════════════════
-function showLogin(view) {
-  currentView = view;
-  document.getElementById('studentLogin').style.display = view === 'student' ? 'flex' : 'none';
-  document.getElementById('adminLogin').style.display = view === 'admin' ? 'flex' : 'none';
-  document.getElementById('studentDash').style.display = 'none';
-  document.getElementById('adminDash').style.display = 'none';
-  document.querySelectorAll('.btn-tab').forEach((b,i) => {
-    b.classList.toggle('active', (i===0 && view==='student') || (i===1 && view==='admin'));
-  });
-  document.getElementById('headerRight').innerHTML = `
-    <button class="btn-tab ${view==='student'?'active':''}" onclick="showLogin('student')">Student</button>
-    <button class="btn-tab ${view==='admin'?'active':''}" onclick="showLogin('admin')">Admin</button>
-  `;
+// ══════════════════════════════════════════════════════
+//  PAGE NAVIGATION
+// ══════════════════════════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  const navBtn = document.getElementById('nav-' + id);
+  if (navBtn) navBtn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Close mobile menu
+  document.getElementById('mainNav').classList.remove('open');
 }
 
-// ══════════════════════════════════════════
-//  STUDENT FLOW
-// ══════════════════════════════════════════
-function studentLogin() {
-  const enroll = document.getElementById('sEnroll').value.trim().toUpperCase();
-  const name   = document.getElementById('sName').value.trim();
-  if (!enroll || !name) { alert('Please enter enrollment number and name.'); return; }
-
-  currentUser = { enrollment: enroll, name };
-
-  // Check if already in system
-  let rec = students.find(s => s.enrollment === enroll);
-  if (!rec) {
-    rec = { enrollment: enroll, name, company:'', role:'', start:'', end:'',
-            status:'none', submittedOn:'', weeks:0, weekReports:[], finalSubmitted:false };
-    students.push(rec);
-  } else {
-    // update name in case
-    rec.name = name;
-  }
-
-  document.getElementById('studentLogin').style.display = 'none';
-  document.getElementById('studentDash').style.display = 'block';
-  renderStudentDash(rec);
-
-  // Update header
-  const initials = name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-  document.getElementById('headerRight').innerHTML = `
-    <div class="user-chip">
-      <div class="user-avatar">${initials}</div>
-      <span class="user-name">${name}</span>
-    </div>
-    <button class="btn-logout" onclick="logout()">Sign out</button>
-  `;
+function toggleMenu() {
+  document.getElementById('mainNav').classList.toggle('open');
 }
 
-function renderStudentDash(rec) {
-  // Hero
-  document.getElementById('heroName').textContent = rec.name;
-  document.getElementById('heroId').textContent = rec.enrollment;
-
-  const statusMap = { none:'Not Submitted', pending:'Under Review', accepted:'✓ Accepted', rejected:'✗ Not Accepted' };
-  document.getElementById('heroStatus').textContent = statusMap[rec.status] || '—';
-  document.getElementById('heroStart').textContent = rec.start || '—';
-  document.getElementById('heroEnd').textContent = rec.end || '—';
-
-  // Blocks
-  document.getElementById('noSubmission').style.display   = rec.status === 'none'     ? 'block' : 'none';
-  document.getElementById('pendingBlock').style.display   = rec.status === 'pending'  ? 'block' : 'none';
-  document.getElementById('acceptedBlock').style.display  = rec.status === 'accepted' ? 'block' : 'none';
-  document.getElementById('rejectedBlock').style.display  = rec.status === 'rejected' ? 'block' : 'none';
-
-  if (rec.status === 'pending') {
-    document.getElementById('pendingCompany').textContent = rec.company;
-    document.getElementById('pendingRole').textContent = rec.role;
-    document.getElementById('pendingDate').textContent = rec.submittedOn;
-  }
-
-  if (rec.status === 'accepted') {
-    renderWeeks(rec);
-    if (rec.finalSubmitted) {
-      document.getElementById('finalSubmitArea').style.display = 'none';
-      document.getElementById('finalDone').style.display = 'flex';
-    }
-  }
-}
-
-function renderWeeks(rec) {
-  const grid = document.getElementById('weeksGrid');
-  grid.innerHTML = '';
-  for (let w = 1; w <= rec.weeks; w++) {
-    const report = rec.weekReports.find(r => r.week === w);
-    const submitted = !!report;
+// ══════════════════════════════════════════════════════
+//  BUILD WEEK GRID
+// ══════════════════════════════════════════════════════
+function buildWeekGrid() {
+  const grid = document.getElementById('weekGrid');
+  FORMS.weeks.forEach(w => {
     const div = document.createElement('div');
-    div.className = 'week-card' + (submitted ? ' submitted' : '');
+    div.className = 'week-btn';
     div.innerHTML = `
-      <div class="week-card-label">Week ${w}</div>
-      <div class="week-card-status">${submitted ? '✓ Submitted ' + report.date : 'Not submitted'}</div>
-      ${submitted
-        ? `<button class="btn-sm btn-blue" onclick="viewWeek(${w})">View</button>`
-        : `<button class="btn-sm btn-green" onclick="openWeekModal(${w})">Submit</button>`}
+      <div class="week-btn-num">${w.week}</div>
+      <div class="week-btn-label">Week ${w.week}</div>
+      <div class="week-btn-sub">Click to submit report</div>
     `;
+    div.onclick = () => openWeekModal(w);
     grid.appendChild(div);
-  }
-}
-
-async function submitInternship() {
-  const company   = document.getElementById('companyName').value.trim();
-  const role      = document.getElementById('roleTitle').value.trim();
-  const start     = document.getElementById('expStart').value;
-  const end       = document.getElementById('expEnd').value;
-  const fileInput = document.getElementById('proofFile');
-  if (!company || !role || !start || !end) { alert('Please fill all required fields.'); return; }
-  if (!fileInput.files[0]) { alert('Please upload proof document.'); return; }
-
-  const btn = document.querySelector('#noSubmission .btn-primary');
-  btn.disabled = true;
-  btn.textContent = '⏳ Uploading... please wait';
-
-  try {
-    const file   = fileInput.files[0];
-    const base64 = await fileToBase64(file);
-
-    const payload = {
-      action:      'submit',
-      enrollment:  currentUser.enrollment,
-      name:        currentUser.name,
-      company, role, start, end,
-      description: document.getElementById('intDesc').value.trim(),
-      fileBase64:  base64,
-      fileName:    file.name
-    };
-
-    // ── IFRAME FORM METHOD — bypasses CORS completely ──
-    // Create a hidden iframe to receive the response
-    let iframe = document.getElementById('_submit_iframe');
-    if (!iframe) {
-      iframe = document.createElement('iframe');
-      iframe.name = '_submit_iframe';
-      iframe.id   = '_submit_iframe';
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-    }
-
-    // Create a hidden form that POSTs to Apps Script
-    let form = document.getElementById('_submit_form');
-    if (form) form.remove();
-    form = document.createElement('form');
-    form.id     = '_submit_form';
-    form.method = 'POST';
-    form.action = APPS_SCRIPT_URL;
-    form.target = '_submit_iframe'; // response goes to iframe, not page
-    form.style.display = 'none';
-
-    // Put entire payload as one field
-    const input = document.createElement('input');
-    input.type  = 'hidden';
-    input.name  = 'payload';
-    input.value = JSON.stringify(payload);
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
-
-    // After submitting, wait 6 seconds then poll Apps Script GET to confirm
-    btn.textContent = '⏳ Saving to server...';
-    setTimeout(() => pollForStatus(company, role, start, end, btn), 6000);
-
-  } catch(err) {
-    alert('Error preparing upload: ' + err.message);
-    btn.disabled = false;
-    btn.textContent = 'Submit for Verification';
-  }
-}
-
-function pollForStatus(company, role, start, end, btn) {
-  let attempts = 0;
-  const interval = setInterval(async () => {
-    attempts++;
-    try {
-      // Use no-cors GET via image trick to ping, then try normal fetch
-      const res  = await fetch(`${APPS_SCRIPT_URL}?enrollment=${encodeURIComponent(currentUser.enrollment)}`, {
-        method: 'GET',
-        mode: 'cors'
-      });
-      const data = await res.json();
-      if (data.status === 'pending' || data.status === 'accepted') {
-        clearInterval(interval);
-        const rec = students.find(s => s.enrollment === currentUser.enrollment);
-        rec.company     = company; rec.role = role;
-        rec.start       = start;   rec.end  = end;
-        rec.status      = data.status;
-        rec.submittedOn = data.submittedOn || new Date().toISOString().split('T')[0];
-        rec.proofUrl    = data.proofUrl || '';
-        rec.weeks       = data.weeks || 0;
-        rec.weekReports = data.weekReports || [];
-        renderStudentDash(rec);
-        return;
-      }
-    } catch(e) { /* CORS on GET also blocked — show pending after max attempts */ }
-
-    if (attempts >= 5) {
-      clearInterval(interval);
-      const rec = students.find(s => s.enrollment === currentUser.enrollment);
-      rec.company = company; rec.role = role;
-      rec.start = start; rec.end = end;
-      rec.status = 'pending';
-      rec.submittedOn = new Date().toISOString().split('T')[0];
-      rec.proofUrl = '';
-      renderStudentDash(rec);
-      btn.disabled = false;
-      alert('✅ Submitted! Your proof has been sent for verification.\n\nNote: The proof link will be visible to the admin in the Google Sheet (column N) and Drive folder.');
-    }
-  }, 4000);
-}
-
-function fileToBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload  = () => resolve(reader.result.split(',')[1]);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
   });
 }
 
-function submitFinal() {
-  const learnings = document.getElementById('finalLearnings').value.trim();
-  if (!learnings) { alert('Please add key learnings.'); return; }
-  const rec = students.find(s => s.enrollment === currentUser.enrollment);
-  rec.finalSubmitted = true;
-  document.getElementById('finalSubmitArea').style.display = 'none';
-  document.getElementById('finalDone').style.display = 'flex';
-}
-
-function resetToSubmit() {
-  const rec = students.find(s => s.enrollment === currentUser.enrollment);
-  rec.status = 'none';
-  renderStudentDash(rec);
-}
-
-function fileChosen(input) {
-  const f = input.files[0];
-  if (f) document.getElementById('uploadLabel').innerHTML = `<strong>${f.name}</strong> — ${(f.size/1024).toFixed(0)} KB`;
-}
-function finalFileChosen(input) {
-  const f = input.files[0];
-  if (f) document.getElementById('finalUploadLabel').innerHTML = `<strong>${f.name}</strong> — ${(f.size/1024).toFixed(0)} KB`;
-}
-function weekFileChosen(input) {
-  const f = input.files[0];
-  if (f) document.getElementById('weekFileLabel').innerHTML = `<strong>${f.name}</strong>`;
-}
-
-// ── Week modal ──
-let activeWeekNum = null;
+// ══════════════════════════════════════════════════════
+//  WEEK MODAL
+// ══════════════════════════════════════════════════════
 function openWeekModal(w) {
-  activeWeekNum = w;
-  document.getElementById('weekModalTitle').textContent = `Week ${w} Report`;
-  document.getElementById('weekSummary').value = '';
-  document.getElementById('weekFileLabel').innerHTML = `<strong>Attach file</strong> (PDF/image)`;
+  document.getElementById('modalTitle').textContent = `Week ${w.week} – Report Submission`;
+  const area = document.getElementById('modalFormArea');
+
+  const isConfigured = !w.embed.startsWith('PASTE');
+
+  if (isConfigured) {
+    // Show embedded form
+    area.innerHTML = `<iframe src="${w.embed}" frameborder="0" marginheight="0" marginwidth="0" style="width:100%;min-height:600px;border:none;display:block">Loading…</iframe>`;
+  } else {
+    // Show link fallback
+    area.innerHTML = `
+      <div style="padding:40px;text-align:center">
+        <div style="font-size:40px;margin-bottom:16px">📝</div>
+        <div style="font-weight:600;color:var(--navy);font-size:17px;margin-bottom:8px">Week ${w.week} Report</div>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:24px;line-height:1.6">
+          Click the button below to open the Week ${w.week} report form.<br/>
+          Fill your Roll Number and Name as the first two fields.
+        </p>
+        <a href="${w.link}" target="_blank"
+          style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:white;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none">
+          📝 Open Week ${w.week} Form ↗
+        </a>
+      </div>`;
+  }
+
   document.getElementById('weekModal').classList.add('open');
 }
-function closeWeekModal() { document.getElementById('weekModal').classList.remove('open'); }
-function saveWeekReport() {
-  const text = document.getElementById('weekSummary').value.trim();
-  if (!text) { alert('Please write a summary.'); return; }
-  const rec = students.find(s => s.enrollment === currentUser.enrollment);
-  rec.weekReports.push({ week: activeWeekNum, text, date: new Date().toISOString().split('T')[0] });
-  closeWeekModal();
-  renderWeeks(rec);
-}
-function viewWeek(w) {
-  const rec = students.find(s => s.enrollment === currentUser.enrollment);
-  const r = rec.weekReports.find(rp => rp.week === w);
-  alert(`Week ${w} Report (${r.date}):\n\n${r.text}`);
+
+function closeModal() {
+  document.getElementById('weekModal').classList.remove('open');
+  // Clear iframe to stop loading
+  document.getElementById('modalFormArea').innerHTML = '';
 }
 
-function logout() {
-  currentUser = null;
-  document.getElementById('studentDash').style.display = 'none';
-  showLogin('student');
-  document.getElementById('sEnroll').value = '';
-  document.getElementById('sName').value = '';
-}
-
-// ══════════════════════════════════════════
-//  ADMIN FLOW
-// ══════════════════════════════════════════
-function adminLogin() {
-  const code = document.getElementById('adminCode').value;
-  if (code !== ADMIN_CODE) { alert('Incorrect access code.'); return; }
-  document.getElementById('adminLogin').style.display = 'none';
-  document.getElementById('adminDash').style.display = 'block';
-  renderAdminTable('all');
-  document.getElementById('headerRight').innerHTML = `
-    <div class="user-chip">
-      <div class="user-avatar">AD</div>
-      <span class="user-name">Coordinator</span>
-    </div>
-    <button class="btn-logout" onclick="adminLogout()">Sign out</button>
-  `;
-}
-
-function adminLogout() {
-  document.getElementById('adminDash').style.display = 'none';
-  showLogin('admin');
-  document.getElementById('adminCode').value = '';
-}
-
-let adminFilter = 'all';
-function filterAdmin(f) {
-  adminFilter = f;
-  ['all','pending','accepted'].forEach(k => {
-    const el = document.getElementById('f'+k.charAt(0).toUpperCase()+k.slice(1));
-    if(el) el.style.background = k===f ? 'var(--accent)' : '';
-    if(el) el.style.color = k===f ? 'white' : '';
-    if(el) el.style.borderColor = k===f ? 'var(--accent)' : '';
-  });
-  renderAdminTable(f);
-}
-
-function renderAdminTable(filter) {
-  const tbody = document.getElementById('adminTableBody');
-  const list = filter === 'all' ? students : students.filter(s => s.status === filter);
-  if (list.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px">No records found</td></tr>`;
-    return;
-  }
-  tbody.innerHTML = list.map(s => `
-    <tr>
-      <td><strong>${s.name}</strong></td>
-      <td style="color:var(--muted)">${s.enrollment}</td>
-      <td>${s.company || '—'}<br><span style="font-size:11px;color:var(--muted)">${s.role || ''}</span></td>
-      <td style="font-size:12px">${s.start ? s.start + ' →<br>' + s.end : '—'}</td>
-      <td>${s.proofUrl
-        ? `<a href="${s.proofUrl}" target="_blank" class="btn-sm btn-blue" style="text-decoration:none">📄 View</a>`
-        : `<span style="color:var(--muted);font-size:12px">—</span>`
-      }</td>
-      <td><span class="badge badge-${s.status === 'none' ? 'pending' : s.status}">
-        <span class="badge-dot"></span>
-        ${s.status === 'none' ? 'No submission' : s.status.charAt(0).toUpperCase()+s.status.slice(1)}
-      </span></td>
-      <td>
-        ${s.status === 'pending'
-          ? `<button class="btn-sm btn-blue" onclick="openVerifyModal('${s.enrollment}')">Review</button>`
-          : s.status === 'accepted'
-          ? `<button class="btn-sm btn-green" onclick="openVerifyModal('${s.enrollment}')">Edit</button>`
-          : s.status === 'none'
-          ? `<span style="color:var(--muted);font-size:12px">—</span>`
-          : `<button class="btn-sm btn-blue" onclick="openVerifyModal('${s.enrollment}')">Review</button>`
-        }
-      </td>
-    </tr>
-  `).join('');
-
-  // Reports table
-  const rtbody = document.getElementById('reportsTableBody');
-  const reports = [];
-  students.forEach(s => {
-    s.weekReports.forEach(r => reports.push({ ...r, student: s.name, enrollment: s.enrollment }));
-  });
-  if (reports.length === 0) {
-    rtbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:24px">No weekly reports yet</td></tr>`;
-  } else {
-    rtbody.innerHTML = reports.map(r => `
-      <tr>
-        <td><strong>${r.student}</strong><br><span style="font-size:11px;color:var(--muted)">${r.enrollment}</span></td>
-        <td>Week ${r.week}</td>
-        <td>${r.date}</td>
-        <td><button class="btn-sm btn-blue" onclick="alert('Week ${r.week}:\\n\\n${r.text}')">View</button></td>
-      </tr>
-    `).join('');
-  }
-}
-
-function openVerifyModal(enrollment) {
-  activeModalEnroll = enrollment;
-  const rec = students.find(s => s.enrollment === enrollment);
-  document.getElementById('modalStudentName').textContent = `${rec.name} — ${rec.company || 'No company yet'}`;
-  document.getElementById('verifyStart').value = rec.start || '';
-  document.getElementById('verifyEnd').value = rec.end || '';
-  document.getElementById('verifyWeeks').value = rec.weeks || 8;
-  document.getElementById('verifyRemarks').value = '';
-
-  // Show proof link or warning
-  if (rec.proofUrl) {
-    document.getElementById('modalProofBox').style.display = 'block';
-    document.getElementById('modalNoProof').style.display = 'none';
-    document.getElementById('modalProofLink').href = rec.proofUrl;
-  } else {
-    document.getElementById('modalProofBox').style.display = 'none';
-    document.getElementById('modalNoProof').style.display = 'block';
-  }
-
-  document.getElementById('verifyModal').classList.add('open');
-}
-function closeModal() { document.getElementById('verifyModal').classList.remove('open'); }
-
-function acceptInternship() {
-  const start = document.getElementById('verifyStart').value;
-  const end   = document.getElementById('verifyEnd').value;
-  const weeks = parseInt(document.getElementById('verifyWeeks').value);
-  if (!start || !end) { alert('Please set start and end dates.'); return; }
-  const rec = students.find(s => s.enrollment === activeModalEnroll);
-  rec.status = 'accepted'; rec.start = start; rec.end = end; rec.weeks = weeks;
-  closeModal();
-  renderAdminTable(adminFilter);
-}
-
-function rejectInternship() {
-  const rec = students.find(s => s.enrollment === activeModalEnroll);
-  rec.status = 'rejected';
-  closeModal();
-  renderAdminTable(adminFilter);
-}
-
-// Close modals on overlay click
-document.getElementById('verifyModal').addEventListener('click', function(e) {
+document.getElementById('weekModal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
-document.getElementById('weekModal').addEventListener('click', function(e) {
-  if (e.target === this) closeWeekModal();
-});
+
+// ══════════════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════════════
+buildWeekGrid();
 </script>
 </body>
 </html>
